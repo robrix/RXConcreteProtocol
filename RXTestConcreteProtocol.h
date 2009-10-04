@@ -7,6 +7,9 @@
 @protocol RXTestProtocol
 +(BOOL)canFoo;
 -(BOOL)isFoo;
+
+@property (nonatomic, copy, readonly) NSString *foo;
+
 @end
 
 @protocol RXTestProtocol2

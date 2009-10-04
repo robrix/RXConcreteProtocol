@@ -14,6 +14,11 @@
 	return NO;
 }
 
+-(NSString *)foo {
+	return @"foo";
+}
+
+
 -(int)bar { return 0; }
 
 @end
