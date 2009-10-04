@@ -32,7 +32,7 @@
 -(void)tearDown {
 	[testClassInstance release];
 	testClassInstance = nil;
-
+	
 #ifdef OBJC_NO_GC
 	objc_disposeClassPair(testClass);
 #endif
@@ -92,6 +92,29 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 	RXAssert([testClass conformsToProtocol: @protocol(RXRecursiveTestProtocol)]);
 }
 
-// overrides methods implemented in a superclass of the extended class
+-(void)testExtendingAClassOverridesMethodsDefinedOnItsSuperclass {
+	Class testSubclass = objc_allocateClassPair(testClass, "Subclass of testClass", 0);
+	objc_registerClassPair(testSubclass);
+	
+	Method bar = class_getInstanceMethod([RXTestConcreteProtocol class], @selector(bar));
+	RXAssert(class_addMethod(testClass, @selector(bar), (IMP)RXConcreteProtocolTestsImplementationFixture, method_getTypeEncoding(bar))); // add the “bar” method
+	RXAssert([testClass instancesRespondToSelector: @selector(bar)]);
+	
+	[RXTestConcreteProtocol extendClass: testSubclass];
+	
+	RXAssert([testSubclass instancesRespondToSelector: @selector(bar)]);
+	
+	id testSubclassInstance = [[testSubclass alloc] init];
+	
+	RXAssertEquals([testSubclassInstance bar], 0);
+	
+	[testSubclassInstance release];
+	testSubclassInstance = nil;
+	
+#ifdef OBJC_NO_GC
+	objc_disposeClassPair(testSubclass);
+#endif
+	testSubclass = Nil;
+}
 
 @end
