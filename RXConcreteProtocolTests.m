@@ -32,18 +32,20 @@
 -(void)tearDown {
 	[testClassInstance release];
 	testClassInstance = nil;
-	
+
+#ifdef OBJC_NO_GC
 	objc_disposeClassPair(testClass);
+#endif
 	testClass = Nil;
 }
 
 
 -(void)testDeclaresTheProtocolsThatItImplements {
-	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames].count, 2);
-	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames], ([NSArray arrayWithObjects: @"RXTestProtocol", @"RXTestProtocol2", nil]));
+	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames].count, 3);
+	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames], ([NSArray arrayWithObjects: @"RXTestProtocol", @"RXTestProtocol2", @"RXRecursiveTestProtocol", nil]));
 }
 
--(void)testExtendsClassesWithTheMethodsInItsProtocols {
+-(void)testExtendsClassesWithMethodsFromProtocols {
 	RXAssertFalse([testClass respondsToSelector: @selector(canFoo)]);
 	RXAssertFalse([testClass instancesRespondToSelector: @selector(isFoo)]);
 	RXAssertFalse([testClass instancesRespondToSelector: @selector(bar)]);
@@ -83,12 +85,15 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 	RXAssert([testClass conformsToProtocol: @protocol(RXTestProtocol2)]);
 }
 
+-(void)testExtendingAClassAddsProtocolsRecursively {
+	[RXTestConcreteProtocol extendClass: testClass];
+	
+	RXAssert([testClass instancesRespondToSelector: @selector(quux)]);
+	RXAssert([testClass conformsToProtocol: @protocol(RXRecursiveTestProtocol)]);
+}
+
 // overrides methods implemented in a superclass of the extended class
 
 // doesn’t worry about missing optional methods
-
-// makes the target class conform to the protocols
-
-// doesn’t import recursive protocols, e.g. conforming to a protocol that conforms to NSObject doesn’t try to copy -description, -isEqual:, etc. in.
 
 @end

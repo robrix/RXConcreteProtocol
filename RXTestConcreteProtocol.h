@@ -12,7 +12,11 @@
 
 @end
 
-@protocol RXTestProtocol2
+@protocol RXRecursiveTestProtocol
+-(void)quux;
+@end
+
+@protocol RXTestProtocol2 <RXRecursiveTestProtocol>
 -(int)bar;
 @end
 

@@ -21,4 +21,7 @@
 
 -(int)bar { return 0; }
 
+
+-(void)quux {}
+
 @end
