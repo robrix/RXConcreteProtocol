@@ -2,6 +2,7 @@
 // Created by Rob Rix on 2009-10-03
 // Copyright 2009 Monochrome Industries
 
+#import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
 #import <SenTestingKit/SenTestingKit.h>
 #import "RXAssertions.h"
@@ -9,20 +10,40 @@
 #import "RXTestConcreteProtocol.h"
 #import <objc/runtime.h>
 
-@interface RXConcreteProtocolTests : SenTestCase
+@interface RXConcreteProtocolTests : SenTestCase {
+	Class testClass;
+	id testClassInstance;
+}
 @end
 
 @implementation RXConcreteProtocolTests
+
+-(void)setUp {
+	CFUUIDRef uuid = CFUUIDCreate(NULL);
+	NSString *testClassName = (NSString *)CFUUIDCreateString(NULL, uuid);
+	testClass = objc_allocateClassPair([NSObject class], [testClassName UTF8String], 0);
+	CFRelease(uuid);
+	[testClassName release];
+	objc_registerClassPair(testClass);
+	
+	testClassInstance = [[testClass alloc] init];
+}
+
+-(void)tearDown {
+	[testClassInstance release];
+	testClassInstance = nil;
+	
+	objc_disposeClassPair(testClass);
+	testClass = Nil;
+}
+
 
 -(void)testDeclaresTheProtocolsThatItImplements {
 	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames].count, 2);
 	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames], ([NSArray arrayWithObjects: @"RXTestProtocol", @"RXTestProtocol2", nil]));
 }
 
--(void)testAddsItsMethodsToClassesAtRuntime {
-	Class testClass = objc_allocateClassPair([NSObject class], "RXConcreteProtocolTestsDynamicClass", 0);
-	objc_registerClassPair(testClass);
-	
+-(void)testExtendsClassesWithTheMethodsInItsProtocols {
 	RXAssertFalse([testClass instancesRespondToSelector: @selector(isFoo)]);
 	RXAssertFalse([testClass instancesRespondToSelector: @selector(bar)]);
 	
@@ -31,15 +52,26 @@
 	RXAssert([testClass instancesRespondToSelector: @selector(isFoo)]);
 	RXAssert([testClass instancesRespondToSelector: @selector(bar)]);
 	
-	id instance = [[testClass alloc] init];
-	RXAssertNotNil(instance);
-	RXAssertFalse([instance isFoo]);
-	RXAssertEquals([instance bar], 0);
-	
-	objc_disposeClassPair(testClass);
+	RXAssertNotNil(testClassInstance);
+	RXAssertFalse([testClassInstance isFoo]);
+	RXAssertEquals([testClassInstance bar], 0);
 }
 
-// doesn’t overwrite existing methods (unless asked to?)
+int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
+	return 1;
+}
+
+-(void)testExtendingAClassDoesNotOverwriteExistingMethods {
+	Method bar = class_getInstanceMethod([RXTestConcreteProtocol class], @selector(bar));
+	RXAssert(class_addMethod(testClass, @selector(bar), (IMP)RXConcreteProtocolTestsImplementationFixture, method_getTypeEncoding(bar))); // add the “bar” method
+	RXAssert([testClass instancesRespondToSelector: @selector(bar)]);
+	
+	[RXTestConcreteProtocol extendClass: testClass];
+	
+	RXAssertEquals([testClassInstance bar], 1);
+}
+
+// overrides methods implemented in a superclass of the extended class
 
 // supports class methods
 
