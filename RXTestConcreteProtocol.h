@@ -18,6 +18,11 @@
 
 @protocol RXTestProtocol2 <RXRecursiveTestProtocol>
 -(int)bar;
+
+@optional
+
+-(void)fishsticks;
+
 @end
 
 @interface RXTestConcreteProtocol : RXConcreteProtocol <RXTestProtocol, RXTestProtocol2>

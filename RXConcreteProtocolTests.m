@@ -94,6 +94,4 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 
 // overrides methods implemented in a superclass of the extended class
 
-// doesn’t worry about missing optional methods
-
 @end
