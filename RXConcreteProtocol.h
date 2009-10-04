@@ -7,7 +7,7 @@
 @interface RXConcreteProtocol : NSObject
 
 // returns an array of the names of the protocols implemented by the concrete protocol subclass. by default, this is all the protocols that the concrete protocol subclass implements, but subclasses can override it if they need to change that behaviour.
-+(NSArray *)implementedProtocolNames;
++(NSSet *)implementedProtocolNames;
 
 +(void)extendClass:(Class)aClass;
 

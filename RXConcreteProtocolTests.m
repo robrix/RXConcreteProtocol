@@ -42,7 +42,7 @@
 
 -(void)testDeclaresTheProtocolsThatItImplements {
 	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames].count, 3);
-	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames], ([NSArray arrayWithObjects: @"RXTestProtocol", @"RXTestProtocol2", @"RXRecursiveTestProtocol", nil]));
+	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames], ([NSSet setWithObjects: @"RXTestProtocol", @"RXTestProtocol2", @"RXRecursiveTestProtocol", nil]));
 }
 
 -(void)testExtendsClassesWithMethodsFromProtocols {

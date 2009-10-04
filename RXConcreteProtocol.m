@@ -7,24 +7,24 @@
 
 @implementation RXConcreteProtocol
 
-NSArray *RXConcreteProtocolsNamesOfProtocols(Protocol **protocols, unsigned int protocolCount) {
-	NSMutableArray *protocolNames = [NSMutableArray array];
+NSSet *RXConcreteProtocolsNamesOfProtocols(Protocol **protocols, unsigned int protocolCount) {
+	NSMutableSet *protocolNames = [NSMutableSet set];
 	for(unsigned int i = 0; i < protocolCount; i++) {
 		Protocol *protocol = protocols[i];
 		[protocolNames addObject: NSStringFromProtocol(protocol)];
 		
 		unsigned int nestedProtocolCount = 0;
 		Protocol **nestedProtocols = protocol_copyProtocolList(protocol, &nestedProtocolCount);
-		[protocolNames addObjectsFromArray: RXConcreteProtocolsNamesOfProtocols(nestedProtocols, nestedProtocolCount)];
+		[protocolNames unionSet: RXConcreteProtocolsNamesOfProtocols(nestedProtocols, nestedProtocolCount)];
 		free(nestedProtocols);
 	}
 	return protocolNames;
 }
 
-+(NSArray *)implementedProtocolNames {
++(NSSet *)implementedProtocolNames {
 	unsigned int protocolCount = 0;
 	Protocol **protocols = class_copyProtocolList([self class], &protocolCount);
-	NSArray *protocolNames = RXConcreteProtocolsNamesOfProtocols(protocols, protocolCount);
+	NSSet *protocolNames = RXConcreteProtocolsNamesOfProtocols(protocols, protocolCount);
 	free(protocols);
 	
 	return protocolNames;
