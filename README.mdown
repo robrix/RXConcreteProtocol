@@ -1,0 +1,52 @@
+#`RXConcreteProtocol`
+
+Back in the days before Leopard, there was a brief window during which [it looked like Objective-C 2.0 would include concrete protocols][1], or protocols which can provide an optional implementation for some or all of their methods (Ruby, etc. folks might know these as “mixins”). Alas, this was not to be.
+
+Fortunately, Leopard shipped with a beautifully revamped Objective-C runtime API which, among things, makes it fairly easy to introspect classes and protocols and add new methods to existing or dynamically generated classes.
+
+[1]: http://lists.apple.com/archives/cocoa-dev/2007/Oct/msg01685.html
+
+`RXConcreteProtocol` is an implementation of this feature using the existing runtime: subclass `RXConcreteProtocol`, declare conformance to one or more protocols, and implement some or all of their methods. (The compiler will warn you if you don’t implement them all; `RXConcreteProtocol` will nonetheless function correctly in this situation.)
+
+
+##How to use it
+
+This is what you need to do to make a concrete protocol:
+
+	@protocol Fishing
+	-(void)catchFish:(id)aFish;
+	@end
+	
+	@interface Fisher : RXConcreteProtocol <Fishing>
+	@end
+	
+	@implementation Fisher
+	-(void)catchFish:(id)aFish; {
+		…
+	}
+	@end
+
+That’s all there is to it. You can declare conformance to multiple protocols, and they too can declare conformance to other protocols, and all of those will be added to the extended classes.
+
+Now that you know how to make one, here’s how you extend classes with it at runtime:
+
+	[Fisher extendClass: [Bear class]];
+	[Fisher extendClass: [Pelican class]];
+
+At this point, `Bear` and `Pelican` both respond to `-catchFish:` with the correct implementation, and both also declare their conformance to the `Fishing` protocol when asked.
+
+
+##When to use it
+
+Mixins can simplify implementation to avoid repetition between distinct branches of your class hierarchy. In many protocol-heavy applications, there can be potential to reap this sort of benefit when for inheritance reasons you are forced to have multiple objects conform to a protocol in more or less the same way but without being able to share a common base class.
+
+
+##Caveats
+
+This sort of composition is a powerful tool, but beware, it’s not without its complications:
+
+- Because the methods are copied into the extended classes, you won’t want to add instance variables to your concrete protocols or use them in your classes. If you find yourself desperately needing to add ivars to the extended classes—you can’t, by the way, the runtime won’t allow it—and can live with running only on 10.6, then consider looking at the new [associated object API][2] in Snow Leopard.
+
+- This is not the best way to add new methods to a single existing class (and its subclasses). If you want to add objects to all `NSObject`s, say, use a category! `RXConcreteProtocol` is probably best applied to simplifying your own codebase (rather than, say, monkeying around with the Cocoa classes).
+
+[2]: http://blog.andymatuschak.org/post/173646741/your-new-friends-obj-c-associated-objects
