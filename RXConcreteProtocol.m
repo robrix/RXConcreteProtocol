@@ -73,6 +73,7 @@ class_addProtocol
 			free(methodList.methods);
 		}
 		
+		class_addProtocol(targetClass, protocol);
 	}
 }
 

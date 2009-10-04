@@ -74,6 +74,13 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 	RXAssertEquals([testClassInstance bar], 1);
 }
 
+-(void)testExtendedClassesAreConformedToItsProtocols {
+	[RXTestConcreteProtocol extendClass: testClass];
+	
+	RXAssert([testClass conformsToProtocol: @protocol(RXTestProtocol)]);
+	RXAssert([testClass conformsToProtocol: @protocol(RXTestProtocol2)]);
+}
+
 // overrides methods implemented in a superclass of the extended class
 
 // copies properties
