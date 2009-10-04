@@ -5,6 +5,7 @@
 #import "RXConcreteProtocol.h"
 
 @protocol RXTestProtocol
++(BOOL)canFoo;
 -(BOOL)isFoo;
 @end
 

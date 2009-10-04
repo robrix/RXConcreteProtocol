@@ -44,15 +44,18 @@
 }
 
 -(void)testExtendsClassesWithTheMethodsInItsProtocols {
+	RXAssertFalse([testClass respondsToSelector: @selector(canFoo)]);
 	RXAssertFalse([testClass instancesRespondToSelector: @selector(isFoo)]);
 	RXAssertFalse([testClass instancesRespondToSelector: @selector(bar)]);
 	
 	[RXTestConcreteProtocol extendClass: testClass];
 	
+	RXAssert([testClass respondsToSelector: @selector(canFoo)]);
 	RXAssert([testClass instancesRespondToSelector: @selector(isFoo)]);
 	RXAssert([testClass instancesRespondToSelector: @selector(bar)]);
 	
 	RXAssertNotNil(testClassInstance);
+	RXAssert([testClass canFoo]);
 	RXAssertFalse([testClassInstance isFoo]);
 	RXAssertEquals([testClassInstance bar], 0);
 }
@@ -72,8 +75,6 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 }
 
 // overrides methods implemented in a superclass of the extended class
-
-// supports class methods
 
 // copies properties
 

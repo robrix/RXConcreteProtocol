@@ -6,6 +6,10 @@
 
 @implementation RXTestConcreteProtocol
 
++(BOOL)canFoo {
+	return YES;
+}
+
 -(BOOL)isFoo {
 	return NO;
 }
