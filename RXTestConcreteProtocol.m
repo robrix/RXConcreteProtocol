@@ -10,4 +10,6 @@
 	return NO;
 }
 
+-(int)bar { return 0; }
+
 @end

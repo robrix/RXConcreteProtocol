@@ -8,5 +8,9 @@
 -(BOOL)isFoo;
 @end
 
-@interface RXTestConcreteProtocol : RXConcreteProtocol <RXTestProtocol>
+@protocol RXTestProtocol2
+-(int)bar;
+@end
+
+@interface RXTestConcreteProtocol : RXConcreteProtocol <RXTestProtocol, RXTestProtocol2>
 @end
