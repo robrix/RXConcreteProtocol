@@ -117,4 +117,12 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 	testSubclass = Nil;
 }
 
+-(void)testStaticallyTypedVariablesWithConformanceDeclarationsDoNotCauseCompilerWarnings {
+	// for purposes of easier verification, treat warnings as errors when compiling this
+	[RXTestConcreteProtocol extendClass: testClass];
+	NSObject<RXTestProtocol> *staticallyTypedInstance = [[testClass alloc] init]; // the class is given as NSObject because the compiler doesn’t know about testClass
+	RXAssertEquals(staticallyTypedInstance.foo, @"foo");
+	[staticallyTypedInstance release];
+}
+
 @end
