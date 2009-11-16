@@ -33,20 +33,34 @@ Now that you know how to make one, here’s how you extend classes with it at ru
 	[Fisher extendClass: [Bear class]];
 	[Fisher extendClass: [Pelican class]];
 
-At this point, `Bear` and `Pelican` both respond to `-catchFish:` with the correct implementation, and both also declare their conformance to the `Fishing` protocol when asked.
+At this point, `Bear` and `Pelican` both respond to `-catchFish:` with the correct implementation, and both also declare their conformance to the `Fishing` protocol when asked:
+
+	[Bear conformsToProtocol: @protocol(Fishing)]; // → YES
+
+[Seth Delackner][2] pointed out that when calling `-catchFish:` on statically-typed `Bear` or `Pelican` instances, the compiler will warn you that they don’t seem to respond to this message. This can be easily resolved by declaring the variable with `id`, or by declaring that it conforms to the protocol in question:
+
+	id bear = [[Bear alloc] init]; // “id” instances might respond to practically anything
+	id<Fishing> bear = [[Bear alloc] init]; // declare the variable as id, but conforming to Fishing
+	Bear<Fishing> *bear = [[Bear alloc] init]; // statically type the variable, and provide it with conformance information
+
+By this means, you can let the compiler check your messages against both the class inheritance hierarchy and the mixed-in protocols.
+
+[2]: http://delackner.com/
 
 
 ##When to use it
 
-Mixins can simplify implementation to avoid repetition between distinct branches of your class hierarchy. In many protocol-heavy applications, there can be potential to reap this sort of benefit when for inheritance reasons you are forced to have multiple objects conform to a protocol in more or less the same way but without being able to share a common base class.
+Mixins can simplify implementation, avoiding repetition between disparate branches of your class hierarchy. In many protocol-heavy applications, there can be potential to reap this sort of benefit when for inheritance reasons you are forced to have multiple objects conform to a protocol in more or less the same way but without being able to share a common base class.
+
+They also provide a viable alternative to inheritance when composing classes in a freeform manner, as opposed to the taxonomic approach embodied by traditional class inheritance.
 
 
 ##Caveats
 
 This sort of composition is a powerful tool, but beware, it’s not without its complications:
 
-- Because the methods are copied into the extended classes, you won’t want to add instance variables to your concrete protocols or use them in your classes. If you find yourself desperately needing to add ivars to the extended classes—you can’t, by the way, the runtime won’t allow it—and can live with running only on 10.6, then consider looking at the new [associated object API][2] in Snow Leopard.
+- Because the methods are copied into the extended classes, you won’t want to add instance variables to your concrete protocols or use them in your classes. If you find yourself desperately needing to add ivars to the extended classes—you can’t, by the way, the runtime won’t allow it—and can live with running only on 10.6, then consider looking at the new [associated object API][3] in Snow Leopard.
 
 - This is not the best way to add new methods to a single existing class (and its subclasses). If you want to add methods to all `NSObject` subclasses, say, use a category! `RXConcreteProtocol` is probably best applied to simplifying your own codebase (rather than, say, monkeying around with the Cocoa classes).
 
-[2]: http://blog.andymatuschak.org/post/173646741/your-new-friends-obj-c-associated-objects
+[3]: http://blog.andymatuschak.org/post/173646741/your-new-friends-obj-c-associated-objects
