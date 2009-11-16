@@ -47,6 +47,6 @@ This sort of composition is a powerful tool, but beware, it’s not without its 
 
 - Because the methods are copied into the extended classes, you won’t want to add instance variables to your concrete protocols or use them in your classes. If you find yourself desperately needing to add ivars to the extended classes—you can’t, by the way, the runtime won’t allow it—and can live with running only on 10.6, then consider looking at the new [associated object API][2] in Snow Leopard.
 
-- This is not the best way to add new methods to a single existing class (and its subclasses). If you want to add objects to all `NSObject`s, say, use a category! `RXConcreteProtocol` is probably best applied to simplifying your own codebase (rather than, say, monkeying around with the Cocoa classes).
+- This is not the best way to add new methods to a single existing class (and its subclasses). If you want to add methods to all `NSObject` subclasses, say, use a category! `RXConcreteProtocol` is probably best applied to simplifying your own codebase (rather than, say, monkeying around with the Cocoa classes).
 
 [2]: http://blog.andymatuschak.org/post/173646741/your-new-friends-obj-c-associated-objects
