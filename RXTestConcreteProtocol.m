@@ -5,14 +5,14 @@
 
 @implementation RXTestConcreteProtocol
 
-+ (BOOL) classDoes    { return YES; }
++ (BOOL)classDoes    { return YES; }
 
-- (BOOL) instanceDoes { return YES; }
+- (BOOL)instanceDoes { return YES; }
 
-- (NSString*) foo     { return @"foo"; }
+- (NSString *)foo    { return @"foo"; }
 
-- (int) oneHundred    { return 100; }
+- (int)oneHundred    { return 100; }
 
-- (void) zilch        { }
+- (void)zilch        { }
 
 @end

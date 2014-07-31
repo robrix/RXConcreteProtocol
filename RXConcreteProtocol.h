@@ -5,10 +5,8 @@
 
 @interface RXConcreteProtocol : NSObject
 
-/*!   An array of the names of the protocols implemented by the concrete protocol subclass.
-      @note By default, this is all the protocols that the concrete protocol subclass implements,
-            but subclasses can override it if they need to change that behaviour. */
-
+/// @return set with the names of the protocols implemented by this "concrete protocol" subclass.
+/// @note By default, this is recursive, return ALL the protocols that the concrete protocol subclass implements, or claims conformance to. However, subclasses can override this method if they need to change the behaviour.
 + (NSSet*) implementedProtocolNames;
 
 +   (void) extendClass:(Class)klass;

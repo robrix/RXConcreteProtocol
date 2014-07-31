@@ -5,8 +5,8 @@
 
 @protocol RXTestProtocol
 
-+ (BOOL) classDoes;
-- (BOOL) instanceDoes;
++ (BOOL)classDoes;
+- (BOOL)instanceDoes;
 
 @property (copy,readonly) NSString *foo;
 
@@ -15,18 +15,18 @@
 
 @protocol RXRecursiveTestProtocol
 
-- (void) zilch;
+- (void)zilch;
 
 @end
 
 
 @protocol RXTestProtocol2 <RXRecursiveTestProtocol>
 
-- (int) oneHundred;
+- (int)oneHundred;
 
 @optional
 
--(void) fishsticks;
+- (void)fishsticks;
 
 @end
 

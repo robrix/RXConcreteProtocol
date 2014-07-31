@@ -4,19 +4,17 @@
 #import "RXConcreteProtocol.h"
 #import <objc/runtime.h>
 
-NSSet *    RXConcreteProtocolsNamesOfProtocols ( Protocol **, unsigned int );
-void RXConcreteProtocolExtendClassWithProtocol ( Class, Class,   Protocol* );
-
 @implementation RXConcreteProtocol
 
 NSSet *RXConcreteProtocolsNamesOfProtocols(Protocol **protocols, unsigned int protocolCount) {
 
 	NSMutableSet *protocolNames = NSMutableSet.set;
 
-	for(unsigned int i = 0; i < protocolCount; i++) { unsigned int nestedProtocolCount = 0;
+	for(unsigned int i = 0; i < protocolCount; i++) {
 
-    Protocol         * protocol = protocols[i];
-		Protocol ** nestedProtocols = protocol_copyProtocolList(protocol, &nestedProtocolCount);
+    unsigned int nestedProtocolCount  = 0;
+    Protocol * protocol               = protocols[i];
+		Protocol ** nestedProtocols       = protocol_copyProtocolList(protocol, &nestedProtocolCount);
 
     [protocolNames addObject:NSStringFromProtocol(protocol)];
 		[protocolNames  unionSet:RXConcreteProtocolsNamesOfProtocols(nestedProtocols, nestedProtocolCount)];
@@ -25,12 +23,13 @@ NSSet *RXConcreteProtocolsNamesOfProtocols(Protocol **protocols, unsigned int pr
 	return protocolNames;
 }
 
-+ (NSSet*) implementedProtocolNames {	unsigned int protocolCount = 0;
++ (NSSet *)implementedProtocolNames {
 
-	Protocol **protocols = class_copyProtocolList([self class], &protocolCount);
-	NSSet *protocolNames = RXConcreteProtocolsNamesOfProtocols(protocols, protocolCount);
-
-  return free(protocols), protocolNames;
+  unsigned int protocolCount  = 0;
+	Protocol ** protocols       = class_copyProtocolList(self.class, &protocolCount);
+	NSSet * protocolNames       = RXConcreteProtocolsNamesOfProtocols(protocols, protocolCount);
+  free(protocols);
+  return protocolNames;
 }
 
 void RXConcreteProtocolExtendClassWithProtocol(Class self, Class targetClass, Protocol *protocol) {
@@ -67,7 +66,7 @@ void RXConcreteProtocolExtendClassWithProtocol(Class self, Class targetClass, Pr
 	class_addProtocol(targetClass, protocol);
 }
 
-+ (void) extendClass:(Class)targetClass {
++ (void)extendClass:(Class)targetClass {
 
 	for(NSString *protocolName in self.implementedProtocolNames)
 		RXConcreteProtocolExtendClassWithProtocol(self, targetClass, NSProtocolFromString(protocolName));
