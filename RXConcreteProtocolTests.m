@@ -106,7 +106,7 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 	testClass = objc_allocateClassPair([NSObject class], [testClassName UTF8String], 0);
 	CFRelease(uuid);
 	objc_registerClassPair(testClass);
-	testClassInstance = testClass.new;
+	testClassInstance = [testClass new];
 }
 
 - (void)tearDown { testClassInstance = nil; testClass = Nil; }
