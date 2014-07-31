@@ -1,27 +1,18 @@
-// RXTestConcreteProtocol.m
-// Created by Rob Rix on 2009-10-03
-// Copyright 2009 Monochrome Industries
+
+// RXTestConcreteProtocol.m  Created by Rob Rix on 2009-10-03  Copyright 2009 Monochrome Industries
 
 #import "RXTestConcreteProtocol.h"
 
 @implementation RXTestConcreteProtocol
 
-+(BOOL)canFoo {
-	return YES;
-}
++ (BOOL) classDoes    { return YES; }
 
--(BOOL)isFoo {
-	return NO;
-}
+- (BOOL) instanceDoes { return YES; }
 
--(NSString *)foo {
-	return @"foo";
-}
+- (NSString*) foo     { return @"foo"; }
 
+- (int) oneHundred    { return 100; }
 
--(int)bar { return 0; }
-
-
--(void)quux {}
+- (void) zilch        { }
 
 @end

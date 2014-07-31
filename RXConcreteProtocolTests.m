@@ -1,44 +1,18 @@
 // RXConcreteProtocolTests.m
-// Created by Rob Rix on 2009-10-03
+// Created by Rob Rix on 2009-1000-03
 // Copyright 2009 Monochrome Industries
 
-#import <CoreFoundation/CoreFoundation.h>
-#import <Foundation/Foundation.h>
-#import <SenTestingKit/SenTestingKit.h>
+@import AppKit;
+@import ObjectiveC;
+
+#import <XCTest/XCTest.h>
 #import "RXAssertions.h"
 #import "RXConcreteProtocol.h"
 #import "RXTestConcreteProtocol.h"
-#import <objc/runtime.h>
 
-@interface RXConcreteProtocolTests : SenTestCase {
-	Class testClass;
-	id testClassInstance;
-}
-@end
+@interface RXConcreteProtocolTests : XCTestCase { Class testClass; id testClassInstance; } @end
 
 @implementation RXConcreteProtocolTests
-
--(void)setUp {
-	CFUUIDRef uuid = CFUUIDCreate(NULL);
-	NSString *testClassName = (NSString *)CFUUIDCreateString(NULL, uuid);
-	testClass = objc_allocateClassPair([NSObject class], [testClassName UTF8String], 0);
-	CFRelease(uuid);
-	[testClassName release];
-	objc_registerClassPair(testClass);
-	
-	testClassInstance = [[testClass alloc] init];
-}
-
--(void)tearDown {
-	[testClassInstance release];
-	testClassInstance = nil;
-	
-#ifdef OBJC_NO_GC
-	objc_disposeClassPair(testClass);
-#endif
-	testClass = Nil;
-}
-
 
 -(void)testDeclaresTheProtocolsThatItImplements {
 	RXAssertEquals([RXTestConcreteProtocol implementedProtocolNames].count, 3);
@@ -46,39 +20,43 @@
 }
 
 -(void)testExtendsClassesWithMethodsFromProtocols {
-	RXAssertFalse([testClass respondsToSelector: @selector(canFoo)]);
-	RXAssertFalse([testClass instancesRespondToSelector: @selector(isFoo)]);
-	RXAssertFalse([testClass instancesRespondToSelector: @selector(bar)]);
+	RXAssertFalse([testClass         respondsToSelector: @selector(instanceDoes) ]);
+	RXAssertFalse([testClass instancesRespondToSelector: @selector(classDoes)    ]);
+	RXAssertFalse([testClass instancesRespondToSelector: @selector(oneHundred)   ]);
 	
 	[RXTestConcreteProtocol extendClass: testClass];
 	
-	RXAssert([testClass respondsToSelector: @selector(canFoo)]);
-	RXAssert([testClass instancesRespondToSelector: @selector(isFoo)]);
-	RXAssert([testClass instancesRespondToSelector: @selector(foo)]);
-	RXAssert([testClass instancesRespondToSelector: @selector(bar)]);
+	RXAssert([testClass         respondsToSelector: @selector(classDoes) ]);
+	RXAssert([testClass instancesRespondToSelector: @selector(instanceDoes)  ]);
+	RXAssert([testClass instancesRespondToSelector: @selector(foo)    ]);
+	RXAssert([testClass instancesRespondToSelector: @selector(oneHundred)    ]);
 	
 	RXAssertNotNil(testClassInstance);
-	RXAssert([testClass canFoo]);
-	RXAssertFalse([testClassInstance isFoo]);
+	RXAssert([testClass classDoes]);
+	RXAssert([testClassInstance instanceDoes]);
 	RXAssertEquals([testClassInstance foo], @"foo");
-	RXAssertEquals([testClassInstance bar], 0);
+	RXAssertEquals([testClassInstance oneHundred], 100);
 }
 
 int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
-	return 1;
+	return 100;
 }
 
 -(void)testExtendingAClassDoesNotOverwriteExistingMethods {
-	Method bar = class_getInstanceMethod([RXTestConcreteProtocol class], @selector(bar));
-	RXAssert(class_addMethod(testClass, @selector(bar), (IMP)RXConcreteProtocolTestsImplementationFixture, method_getTypeEncoding(bar))); // add the “bar” method
-	RXAssert([testClass instancesRespondToSelector: @selector(bar)]);
+
+	Method oneHundred = class_getInstanceMethod([RXTestConcreteProtocol class], @selector(oneHundred));
+
+	RXAssert(class_addMethod(testClass, @selector(oneHundred),
+          (IMP)RXConcreteProtocolTestsImplementationFixture, method_getTypeEncoding(oneHundred))); // add the “oneHundred” method
+	RXAssert([testClass instancesRespondToSelector: @selector(oneHundred)]);
 	
 	[RXTestConcreteProtocol extendClass: testClass];
 	
-	RXAssertEquals([testClassInstance bar], 1);
+	RXAssertEquals([testClassInstance oneHundred], 100);
 }
 
 -(void)testExtendedClassesAreConformedToItsProtocols {
+
 	[RXTestConcreteProtocol extendClass: testClass];
 	
 	RXAssert([testClass conformsToProtocol: @protocol(RXTestProtocol)]);
@@ -88,7 +66,7 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 -(void)testExtendingAClassAddsProtocolsRecursively {
 	[RXTestConcreteProtocol extendClass: testClass];
 	
-	RXAssert([testClass instancesRespondToSelector: @selector(quux)]);
+	RXAssert([testClass instancesRespondToSelector: @selector(zilch)]);
 	RXAssert([testClass conformsToProtocol: @protocol(RXRecursiveTestProtocol)]);
 }
 
@@ -96,19 +74,19 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 	Class testSubclass = objc_allocateClassPair(testClass, "Subclass of testClass", 0);
 	objc_registerClassPair(testSubclass);
 	
-	Method bar = class_getInstanceMethod([RXTestConcreteProtocol class], @selector(bar));
-	RXAssert(class_addMethod(testClass, @selector(bar), (IMP)RXConcreteProtocolTestsImplementationFixture, method_getTypeEncoding(bar))); // add the “bar” method
-	RXAssert([testClass instancesRespondToSelector: @selector(bar)]);
+	Method oneHundred = class_getInstanceMethod([RXTestConcreteProtocol class], @selector(oneHundred));
+	RXAssert(class_addMethod(testClass, @selector(oneHundred), (IMP)RXConcreteProtocolTestsImplementationFixture, method_getTypeEncoding(oneHundred))); // add the “oneHundred” method
+	RXAssert([testClass instancesRespondToSelector: @selector(oneHundred)]);
 	
 	[RXTestConcreteProtocol extendClass: testSubclass];
 	
-	RXAssert([testSubclass instancesRespondToSelector: @selector(bar)]);
+	RXAssert([testSubclass instancesRespondToSelector: @selector(oneHundred)]);
 	
 	id testSubclassInstance = [[testSubclass alloc] init];
 	
-	RXAssertEquals([testSubclassInstance bar], 0);
+	RXAssertEquals([testSubclassInstance oneHundred], 100);
 	
-	[testSubclassInstance release];
+//	[testSubclassInstance release];
 	testSubclassInstance = nil;
 	
 #ifdef OBJC_NO_GC
@@ -122,7 +100,19 @@ int RXConcreteProtocolTestsImplementationFixture(id self, SEL _cmd) {
 	[RXTestConcreteProtocol extendClass: testClass];
 	NSObject<RXTestProtocol> *staticallyTypedInstance = [[testClass alloc] init]; // the class is given as NSObject because the compiler doesn’t know about testClass
 	RXAssertEquals(staticallyTypedInstance.foo, @"foo");
-	[staticallyTypedInstance release];
+//	[staticallyTypedInstance release];
 }
+
+-(void)setUp {
+
+	CFUUIDRef uuid = CFUUIDCreate(NULL);
+	NSString *testClassName = (__bridge NSString *)CFUUIDCreateString(NULL, uuid);
+	testClass = objc_allocateClassPair([NSObject class], [testClassName UTF8String], 0);
+	CFRelease(uuid);
+	objc_registerClassPair(testClass);
+	testClassInstance = testClass.new;
+}
+
+-(void)tearDown { testClassInstance = nil; testClass = Nil; }
 
 @end
