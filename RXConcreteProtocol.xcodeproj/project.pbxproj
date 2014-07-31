@@ -3,20 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D48A7BE3107801E40057FD65 /* RXConcreteProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BE1107801C80057FD65 /* RXConcreteProtocolTests.m */; };
-		D48A7BF9107804FB0057FD65 /* RXAssertions.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BF7107804FB0057FD65 /* RXAssertions.m */; };
+		7B8883691989FC2E0084F770 /* RXConcreteProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BE1107801C80057FD65 /* RXConcreteProtocolTests.m */; };
+		7B88836A1989FC340084F770 /* RXTestConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BFF1078055B0057FD65 /* RXTestConcreteProtocol.m */; };
+		7B88836B1989FD080084F770 /* RXAssertions.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BF7107804FB0057FD65 /* RXAssertions.m */; };
+		7BA2ADA91989CD450060DEFB /* libRXConcreteProtocol.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libRXConcreteProtocol.a */; };
 		D48A7BFC107805190057FD65 /* RXConcreteProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = D48A7BFA107805190057FD65 /* RXConcreteProtocol.h */; };
-		D48A7BFD107805190057FD65 /* RXConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BFB107805190057FD65 /* RXConcreteProtocol.m */; };
-		D48A7C001078055B0057FD65 /* RXTestConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BFF1078055B0057FD65 /* RXTestConcreteProtocol.m */; };
-		D48A7C06107809E00057FD65 /* libRXConcreteProtocol.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libRXConcreteProtocol.a */; };
+		D48A7BFD107805190057FD65 /* RXConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A7BFB107805190057FD65 /* RXConcreteProtocol.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D48A7BE4107801EB0057FD65 /* PBXContainerItemProxy */ = {
+		7BA2ADAA1989CD450060DEFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = RXConcreteProtocol;
+		};
+		7BA2ADAF1989CDD40060DEFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
@@ -26,13 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		32DBCF5E0370ADEE00C91783 /* RXConcreteProtocol.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXConcreteProtocol.pch; sourceTree = "<group>"; };
+		7BA2ADA31989CD450060DEFB /* RXConcreteProtocol Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RXConcreteProtocol Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2AAC07E0554694100DB518D /* libRXConcreteProtocol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRXConcreteProtocol.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D48A7BD91077D24B0057FD65 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D48A7BDA1077D24C0057FD65 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		D48A7BE1107801C80057FD65 /* RXConcreteProtocolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXConcreteProtocolTests.m; sourceTree = "<group>"; };
 		D48A7BF7107804FB0057FD65 /* RXAssertions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RXAssertions.m; path = External/RXAssertions/RXAssertions.m; sourceTree = "<group>"; };
-		D48A7BF8107804FB0057FD65 /* RXAssertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RXAssertions.h; path = External/RXAssertions/RXAssertions.h; sourceTree = "<group>"; };
+		D48A7BF8107804FB0057FD65 /* RXAssertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = RXAssertions.h; path = External/RXAssertions/RXAssertions.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D48A7BFA107805190057FD65 /* RXConcreteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXConcreteProtocol.h; sourceTree = "<group>"; };
 		D48A7BFB107805190057FD65 /* RXConcreteProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXConcreteProtocol.m; sourceTree = "<group>"; };
 		D48A7BFE1078055B0057FD65 /* RXTestConcreteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXTestConcreteProtocol.h; sourceTree = "<group>"; };
@@ -40,18 +45,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7BA2ADA01989CD450060DEFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BA2ADA91989CD450060DEFB /* libRXConcreteProtocol.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07C0554694100DB518D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D48A7BD61077D24B0057FD65 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D48A7C06107809E00057FD65 /* libRXConcreteProtocol.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC07E0554694100DB518D /* libRXConcreteProtocol.a */,
-				D48A7BD91077D24B0057FD65 /* Tests.octest */,
+				7BA2ADA31989CD450060DEFB /* RXConcreteProtocol Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,11 +77,9 @@
 			children = (
 				D48A7BFA107805190057FD65 /* RXConcreteProtocol.h */,
 				D48A7BFB107805190057FD65 /* RXConcreteProtocol.m */,
-				32DBCF5E0370ADEE00C91783 /* RXConcreteProtocol.pch */,
 				D48A7BE1107801C80057FD65 /* RXConcreteProtocolTests.m */,
 				D48A7BFE1078055B0057FD65 /* RXTestConcreteProtocol.h */,
 				D48A7BFF1078055B0057FD65 /* RXTestConcreteProtocol.m */,
-				D48A7BDA1077D24C0057FD65 /* Tests-Info.plist */,
 				D48A7BF5107804E00057FD65 /* External */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
@@ -114,6 +117,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7BA2ADA21989CD450060DEFB /* RXConcreteProtocol Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BA2ADAC1989CD450060DEFB /* Build configuration list for PBXNativeTarget "RXConcreteProtocol Tests" */;
+			buildPhases = (
+				7BA2AD9F1989CD450060DEFB /* Sources */,
+				7BA2ADA01989CD450060DEFB /* Frameworks */,
+				7BA2ADA11989CD450060DEFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7BA2ADAB1989CD450060DEFB /* PBXTargetDependency */,
+				7BA2ADB01989CDD40060DEFB /* PBXTargetDependency */,
+			);
+			name = "RXConcreteProtocol Tests";
+			productName = "RXConcreteProtocol Tests";
+			productReference = 7BA2ADA31989CD450060DEFB /* RXConcreteProtocol Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D2AAC07D0554694100DB518D /* RXConcreteProtocol */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "RXConcreteProtocol" */;
@@ -131,46 +153,40 @@
 			productReference = D2AAC07E0554694100DB518D /* libRXConcreteProtocol.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		D48A7BD81077D24B0057FD65 /* Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D48A7BDD1077D2510057FD65 /* Build configuration list for PBXNativeTarget "Tests" */;
-			buildPhases = (
-				D48A7BD51077D24B0057FD65 /* Sources */,
-				D48A7BD61077D24B0057FD65 /* Frameworks */,
-				D48A7BD41077D24B0057FD65 /* Resources */,
-				D48A7BD71077D24B0057FD65 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D48A7BE5107801EB0057FD65 /* PBXTargetDependency */,
-			);
-			name = Tests;
-			productName = Tests;
-			productReference = D48A7BD91077D24B0057FD65 /* Tests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				TargetAttributes = {
+					7BA2ADA21989CD450060DEFB = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = D2AAC07D0554694100DB518D;
+					};
+				};
+			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "RXConcreteProtocol" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* RXConcreteProtocol */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* RXConcreteProtocol */,
-				D48A7BD81077D24B0057FD65 /* Tests */,
+				7BA2ADA21989CD450060DEFB /* RXConcreteProtocol Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D48A7BD41077D24B0057FD65 /* Resources */ = {
+		7BA2ADA11989CD450060DEFB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -179,24 +195,17 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		D48A7BD71077D24B0057FD65 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
+/* Begin PBXSourcesBuildPhase section */
+		7BA2AD9F1989CD450060DEFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
+				7B88836A1989FC340084F770 /* RXTestConcreteProtocol.m in Sources */,
+				7B88836B1989FD080084F770 /* RXAssertions.m in Sources */,
+				7B8883691989FC2E0084F770 /* RXConcreteProtocolTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-			showEnvVarsInLog = 0;
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,23 +214,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D48A7BD51077D24B0057FD65 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D48A7BE3107801E40057FD65 /* RXConcreteProtocolTests.m in Sources */,
-				D48A7BF9107804FB0057FD65 /* RXAssertions.m in Sources */,
-				D48A7C001078055B0057FD65 /* RXTestConcreteProtocol.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D48A7BE5107801EB0057FD65 /* PBXTargetDependency */ = {
+		7BA2ADAB1989CD450060DEFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D2AAC07D0554694100DB518D /* RXConcreteProtocol */;
-			targetProxy = D48A7BE4107801EB0057FD65 /* PBXContainerItemProxy */;
+			targetProxy = 7BA2ADAA1989CD450060DEFB /* PBXContainerItemProxy */;
+		};
+		7BA2ADB01989CDD40060DEFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC07D0554694100DB518D /* RXConcreteProtocol */;
+			targetProxy = 7BA2ADAF1989CDD40060DEFB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -230,15 +234,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_GC = supported;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RXConcreteProtocol.pch;
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -246,6 +246,7 @@
 					Foundation,
 				);
 				PRODUCT_NAME = RXConcreteProtocol;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -253,95 +254,121 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_GC = supported;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RXConcreteProtocol_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = RXConcreteProtocol;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		1DEB922308733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
 		1DEB922408733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
-		D48A7BDB1077D2510057FD65 /* Debug */ = {
+		7BA2ADAD1989CD450060DEFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = supported;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RXConcreteProtocol.pch;
-				INFOPLIST_FILE = "Tests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
 				);
-				PREBINDING = NO;
-				PRODUCT_NAME = Tests;
-				WRAPPER_EXTENSION = octest;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		D48A7BDC1077D2510057FD65 /* Release */ = {
+		7BA2ADAE1989CD450060DEFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "Tests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
 				);
-				PREBINDING = NO;
-				PRODUCT_NAME = Tests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -366,11 +393,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D48A7BDD1077D2510057FD65 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+		7BA2ADAC1989CD450060DEFB /* Build configuration list for PBXNativeTarget "RXConcreteProtocol Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D48A7BDB1077D2510057FD65 /* Debug */,
-				D48A7BDC1077D2510057FD65 /* Release */,
+				7BA2ADAD1989CD450060DEFB /* Debug */,
+				7BA2ADAE1989CD450060DEFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
